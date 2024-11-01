@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="login" style="text-align: center">
+      <h1>REGISTER FORM</h1>
+      <form action="">
+        <input
+          type="text"
+          name="firstname"
+          id="firstname"
+          placeholder="FIRSTNAME"
+        />
+        <br />
+        <input
+          type="text"
+          name="lastname"
+          id="lastname"
+          placeholder="LASTNAME"
+        />
+        <br />
+        <input type="email" name="email" id="email" placeholder="EMAIL" />
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="PASSWORD"
+        />
+        <br />
+        <input type="number" name="pno" id="pno" placeholder="PHONENUMBER" />
+        <br />
+        <button>Submit</button>
+
+        <br />
+
+        <div id="outer">
+          <div id="inner">
+            <button id="button">capturing</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      let fName = document.getElementsByName("firstname")[0];
+      let lName = document.getElementsByName("lastname")[0];
+      let emails = document.getElementsByName("email")[0];
+      let pass = document.getElementsByName("password")[0];
+      let pno = document.getElementsByName("pno")[0];
+      let btn = document.getElementsByTagName("button")[0];
+      let obj = {};
+      // let arr=[];
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // arr[0]=fName.value
+        obj.firstName = fName.value ?? "DEFAULT VALUE A";
+        obj.lastName = lName.value ??"defualt value b";
+        obj.email = emails.value ?? "sivaji@com";
+        obj.password = pass.value ?? 1234;
+        obj.phoneName = pno.value ?? 0;
+        fName.value = "";
+        lName.value = "";
+        emails.value = "";
+        pass.value = "";
+        pno.value = "";
+        // console.log(arr);
+        console.log(obj);
+        e.stopImmediatePropagation();
+
+        for (i in obj) {
+          let para = document.createElement("p");
+          document.body.appendChild(para);
+          para.innerText = `THE VALUES OF ${i} IS: ${obj[i]}`;
+        }
+      });
+
+      btn.addEventListener("click", function (e) {
+        console.log("after clicking buttton");
+      });
+      btn.addEventListener("click", function (e) {
+        console.log("after clicking buttton");
+      });
+
+      //stopropagation
+      document.getElementById("outer").addEventListener(
+        "click",
+        function (e) {
+          e.preventDefault();
+          console.log("outercapturing");
+          e.stopImmediatePropagation();
+        },
+        true
+      );
+      document.getElementById("inner").addEventListener("click", function (ev) {
+        ev.preventDefault();
+        console.log("innercapturing");
+        ev.stopPropagation();
+      });
+      document
+        .getElementById("button")
+        .addEventListener("click", function (evn) {
+          evn.preventDefault();
+          console.log("buttoncapturing");
+          evn.stopPropagation();
+        });
+    </script>
+  </body>
+</html>
